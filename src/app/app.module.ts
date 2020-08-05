@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { NoImagePipe } from './pipes/no-image.pipe';
+import { MessageDirective } from './directives/message.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NoImagePipe } from './pipes/no-image.pipe';
     HomeComponent,
     SearchComponent,
     DetailComponent,
-    NoImagePipe
+    NoImagePipe,
+    MessageDirective
   ],
   imports: [
     BrowserModule,

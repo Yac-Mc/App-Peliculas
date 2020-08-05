@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { DatePipe } from '@angular/common';
 import { Movie } from '../../interfaces/movie.interface';
@@ -17,23 +17,11 @@ export class HomeComponent implements OnInit {
 
   constructor(private movieService: MoviesService, private datePipe: DatePipe) { }
 
-  // @HostListener('mouseenter') mouseEntro(){
-
-  //   this.resaltar(this.nuevoColor || 'yellow');
-  // }
-
-  // @HostListener('mouseleave') mouseSale(){
-  //   this.resaltar(null);
-  // }
-
   ngOnInit(): void {
 
     const dates = this.extractDates();
     this.movieService.getInTheatres(dates).subscribe((movies: Movie[]) => this.moviesTheatres = movies);
-    this.movieService.getPopulary().subscribe((movies: Movie[]) => {
-      console.log(movies);
-      this.moviesPopulary = movies;
-    });
+    this.movieService.getPopulary().subscribe((movies: Movie[]) => this.moviesPopulary = movies);
   }
 
   extractDates(): {} {

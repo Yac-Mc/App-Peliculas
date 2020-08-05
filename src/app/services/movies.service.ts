@@ -18,16 +18,6 @@ export class MoviesService {
                     .pipe(
                       map( (data: any) => data.results.map((res: any) => {
                         return this.mapFields('Películas en cartelera', res);
-                        // const movie: Movie = {
-                        //   type: 'Películas en cartelera',
-                        //   id: res.id,
-                        //   title: res.title,
-                        //   popularity: res.popularity,
-                        //   release_date: res.release_date,
-                        //   poster_path: res.poster_path,
-                        //   backdrop_path: res.backdrop_path
-                        // };
-                        // return movie;
                       })
                       )
                     );
