@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { MoviesService } from '../../services/movies.service';
+import { DatePipe } from '@angular/common';
+import { Movie } from '../../interfaces/movie.interface';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +11,59 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  moviesTheatres: Movie[] = [];
+  moviesPopulary: Movie[] = [];
+  seeMoreMovies: Movie[] = [];
+
+  constructor(private movieService: MoviesService, private datePipe: DatePipe) { }
+
+  // @HostListener('mouseenter') mouseEntro(){
+
+  //   this.resaltar(this.nuevoColor || 'yellow');
+  // }
+
+  // @HostListener('mouseleave') mouseSale(){
+  //   this.resaltar(null);
+  // }
 
   ngOnInit(): void {
+
+    const dates = this.extractDates();
+    this.movieService.getInTheatres(dates).subscribe((movies: Movie[]) => this.moviesTheatres = movies);
+    this.movieService.getPopulary().subscribe((movies: Movie[]) => {
+      console.log(movies);
+      this.moviesPopulary = movies;
+    });
+  }
+
+  extractDates(): {} {
+    const dates: any = {};
+    const currentDate = new Date();
+
+    if (currentDate.getDate() === 1){
+      dates.dateFin = this.datePipe.transform(currentDate.setDate(0), 'yyyy-MM-dd');
+      dates.dateIni = this.datePipe.transform(currentDate.setMonth(currentDate.getMonth() - 1), 'yyyy-MM-dd');
+    }else {
+
+      dates.dateIni = `${currentDate.getFullYear().toString()}-${('0' + (currentDate.getMonth() + 1)).slice(-2)}-01`;
+      dates.dateFin = this.datePipe.transform(currentDate, 'yyyy-MM-dd');
+    }
+
+    return dates;
+  }
+
+  goDetail(movie: Movie){
+
+    console.log(movie);
+
+  }
+
+  seeMore(movies: Movie[]){
+    this.seeMoreMovies = movies;
+  }
+
+  return(){
+    this.seeMoreMovies = [];
   }
 
 }

@@ -1,1 +1,49 @@
-<p>home works!</p>
+<div class="container" *ngIf="seeMoreMovies.length === 0">
+    <div class="col-12" *ngIf="moviesTheatres.length > 0">
+        <h3>{{moviesTheatres[0].type}}</h3>
+        <div class="row">
+            <div class="col-sm-2" *ngFor="let movie of moviesTheatres | slice:0:12">
+                <div class="card effectGrow" (click)="goDetail(movie)">
+                    <img [src]="movie | noImage" class="card-img-top" alt="...">
+                </div>
+            </div>
+            &nbsp;
+            <div class="col-md-12 text-right" *ngIf="moviesTheatres.length > 12">
+                <button type="button" class="btn btn-outline-success" (click)="seeMore(moviesTheatres)">Ver más</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12" *ngIf="moviesPopulary.length > 0">
+        <h3>{{moviesPopulary[0].type}}</h3>
+        <div class="row">
+            <div class="col-sm-2" *ngFor="let movie of moviesPopulary | slice:0:12">
+                <div class="card effectGrow" (click)="goDetail(movie)">
+                    <img [src]="movie | noImage" class="card-img-top" alt="...">
+                </div>
+            </div>
+            &nbsp;
+            <div class="col-md-12 text-right" *ngIf="moviesPopulary.length > 12">
+                <button type="button" class="btn btn-outline-success" (click)="seeMore(moviesPopulary)">Ver más</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="seeMoreMovies.length > 0">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>{{seeMoreMovies[0].type}}</h3>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="btn btn-outline-danger" (click)="return()">Volver</button>
+            </div>
+            <div class="col-sm-2" *ngFor="let movie of seeMoreMovies">
+                <div class="card effectGrow" (click)="goDetail(movie)">
+                    <img [src]="movie | noImage" class="card-img-top" alt="...">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
