@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { MoviesService } from '../../services/movies.service';
 import { DatePipe } from '@angular/common';
 import { Movie } from '../../interfaces/movie.interface';
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
   moviesPopulary: Movie[] = [];
   seeMoreMovies: Movie[] = [];
 
-  constructor(private movieService: MoviesService, private datePipe: DatePipe) { }
+  constructor(private movieService: MoviesService, private datePipe: DatePipe) {
+  }
 
   ngOnInit(): void {
 
@@ -40,14 +42,14 @@ export class HomeComponent implements OnInit {
     return dates;
   }
 
+  seeMore(movies: Movie[]){
+    this.seeMoreMovies = movies;
+  }
+
   goDetail(movie: Movie){
 
     console.log(movie);
 
-  }
-
-  seeMore(movies: Movie[]){
-    this.seeMoreMovies = movies;
   }
 
   return(){

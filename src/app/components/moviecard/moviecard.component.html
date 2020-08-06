@@ -1,0 +1,4 @@
+<div class="card effectGrow" (click)="goDetail(movie)">
+    <img class="card-img-top" [src]="movie | noImage">
+    <small class="smallScore">Cal: <ngb-rating class="score" [max]="5" [rate]="(movie.vote_average/2)" [readonly]="true"></ngb-rating></small>
+</div>

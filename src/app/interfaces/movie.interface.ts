@@ -2,7 +2,7 @@ export interface Movie {
     type: string;
     id: number;
     title: string;
-    popularity?: number;
+    vote_average?: number;
     release_date?: Date;
     poster_path?: string;
     backdrop_path?: string;

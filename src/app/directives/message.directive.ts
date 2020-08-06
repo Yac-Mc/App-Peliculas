@@ -5,35 +5,31 @@ import { Directive, ElementRef, Input, HostListener } from '@angular/core';
 })
 export class MessageDirective {
 
-  @Input("appMessage") description: string;
+  @Input("appMessage") title: string;
 
   constructor(private elementRef: ElementRef) {}
 
   @HostListener('mouseenter') mouseEntro(){
-    this.seeDescription(this.description);
+    this.seeDescription(this.title);
   }
 
   @HostListener('mouseleave') mouseSale(){
-    this.seeDescription();
+    this.seeDescription(null);
   }
 
-  private seeDescription(description?: string ){
-    let tag = '';
-    if (description){
-      if (this.elementRef.nativeElement.childNodes.length === 1){
-        tag = `${this.elementRef.nativeElement.innerHTML}<small>${description}</small>`;
-        this.elementRef.nativeElement.innerHTML = tag;
-        this.elementRef.nativeElement.style.backgroundColor = '#343a40';
-        this.elementRef.nativeElement.style.color = 'red';
+  private seeDescription(title: string ){
+    if (title){
+      if (this.elementRef.nativeElement.childNodes[0].currentSrc.includes('assets/img/noimage.png')){
+        let innerHTML = this.elementRef.nativeElement.childNodes[1].innerHTML;
+        if (!innerHTML.includes('Titulo')){
+          innerHTML = `Titulo: ${title} - ${innerHTML}`;
+          this.elementRef.nativeElement.childNodes[1].innerHTML = innerHTML;
+        }
       }
     }
-    else{
-      if (this.elementRef.nativeElement.childNodes.length > 1){
-        tag = this.elementRef.nativeElement.childNodes[0].outerHTML;
-        this.elementRef.nativeElement.innerHTML = tag;
-        this.elementRef.nativeElement.style.backgroundColor = null;
-      }
-    }
+    this.elementRef.nativeElement.style.backgroundColor = title ? '#343a40' : title;
+    this.elementRef.nativeElement.childNodes[1].style.color = title ? 'red' : title;
+    this.elementRef.nativeElement.childNodes[1].lastChild.style.color = title ? 'goldenrod' : title;
   }
 
 }

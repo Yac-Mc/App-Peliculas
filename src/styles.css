@@ -12,3 +12,19 @@
 .effectGrow:hover {
     transform: scale(1.1);
 }
+
+.smallCard {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.smallScore {
+    background-color: #343a40;
+    color: red;
+    font-weight: bold;
+}
+
+.smallScore .score {
+    color: goldenrod;
+}

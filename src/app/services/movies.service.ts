@@ -38,7 +38,7 @@ export class MoviesService {
       type: typeMovie,
       id: response.id,
       title: response.title,
-      popularity: response.popularity,
+      vote_average: response.vote_average,
       release_date: response.release_date,
       poster_path: response.poster_path,
       backdrop_path: response.backdrop_path
