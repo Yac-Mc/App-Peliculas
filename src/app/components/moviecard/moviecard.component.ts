@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Movie } from 'src/app/interfaces/movie.interface';
 
 @Component({
@@ -7,19 +7,12 @@ import { Movie } from 'src/app/interfaces/movie.interface';
   styles: [
   ]
 })
-export class MoviecardComponent implements OnInit {
+export class MoviecardComponent {
 
-  @Input() movie: Movie;
-  seeMoreMovies: Movie[] = [];
+  @Input() cardMovie: Movie;
+  @Input() date?: Date;
 
   constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
-  seeMore(movies?: Movie[]){
-    this.seeMoreMovies = movies;
   }
 
   goDetail(movie: Movie){

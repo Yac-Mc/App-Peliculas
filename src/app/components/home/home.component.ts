@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
 
   moviesTheatres: Movie[] = [];
   moviesPopulary: Movie[] = [];
+  moviesPopularyKids: Movie[] = [];
   seeMoreMovies: Movie[] = [];
 
   constructor(private movieService: MoviesService, private datePipe: DatePipe) {
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
     const dates = this.extractDates();
     this.movieService.getInTheatres(dates).subscribe((movies: Movie[]) => this.moviesTheatres = movies);
     this.movieService.getPopulary().subscribe((movies: Movie[]) => this.moviesPopulary = movies);
+    this.movieService.getPopularyKids().subscribe((movies: Movie[]) => this.moviesPopularyKids = movies);
   }
 
   extractDates(): {} {
@@ -31,6 +33,7 @@ export class HomeComponent implements OnInit {
     const currentDate = new Date();
 
     if (currentDate.getDate() === 1){
+
       dates.dateFin = this.datePipe.transform(currentDate.setDate(0), 'yyyy-MM-dd');
       dates.dateIni = this.datePipe.transform(currentDate.setMonth(currentDate.getMonth() - 1), 'yyyy-MM-dd');
     }else {

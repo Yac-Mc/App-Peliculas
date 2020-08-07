@@ -1,4 +1,7 @@
-<div class="card effectGrow" (click)="goDetail(movie)">
-    <img class="card-img-top" [src]="movie | noImage">
-    <small class="smallScore">Cal: <ngb-rating class="score" [max]="5" [rate]="(movie.vote_average/2)" [readonly]="true"></ngb-rating></small>
+<div class="card effectGrow" (click)="goDetail(cardMovie)">
+    <img class="card-img-top" [src]="cardMovie | noImage">
+    <small class="smallScore">
+        <label *ngIf="date" for="">Año: {{date | date:'yyyy'}}&nbsp; &nbsp; &nbsp;</label>
+        <ngb-rating class="score" [max]="5" [rate]="(cardMovie.vote_average/2)" [readonly]="true"></ngb-rating>
+    </small>
 </div>
