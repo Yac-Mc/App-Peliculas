@@ -19,17 +19,17 @@ export class MessageDirective {
 
   private seeDescription(title: string ){
     if (title){
-      if (this.elementRef.nativeElement.childNodes[0].currentSrc.includes('assets/img/noimage.png')){
-        let innerHTML = this.elementRef.nativeElement.childNodes[1].innerHTML;
+      if (this.elementRef.nativeElement.childNodes[0].childNodes[0].currentSrc.includes('assets/img/noimage.png')){
+        let innerHTML = this.elementRef.nativeElement.childNodes[0].childNodes[1].innerHTML;
         if (!innerHTML.includes('Titulo')){
           innerHTML = `Titulo: ${title} - ${innerHTML}`;
-          this.elementRef.nativeElement.childNodes[1].innerHTML = innerHTML;
+          this.elementRef.nativeElement.childNodes[0].childNodes[1].innerHTML = innerHTML;
         }
       }
     }
-    this.elementRef.nativeElement.style.backgroundColor = title ? '#343a40' : title;
-    this.elementRef.nativeElement.childNodes[1].style.color = title ? 'red' : title;
-    this.elementRef.nativeElement.childNodes[1].lastChild.style.color = title ? 'goldenrod' : title;
+    this.elementRef.nativeElement.childNodes[0].style.backgroundColor = title ? '#343a40' : title;
+    this.elementRef.nativeElement.childNodes[0].childNodes[1].style.color = title ? 'red' : title;
+    this.elementRef.nativeElement.childNodes[0].childNodes[1].lastChild.style.color = title ? 'goldenrod' : title;
   }
 
 }

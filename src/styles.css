@@ -28,3 +28,9 @@
 .smallScore .score {
     color: goldenrod;
 }
+
+.btnFlotantes {
+    display: scroll;
+    position: fixed;
+    bottom: 50px;
+}

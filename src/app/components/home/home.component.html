@@ -1,29 +1,13 @@
 <div class="row">
     <div class="col-md-11">
         <div class="container" *ngIf="seeMoreMovies.length === 0">
-            <div class="col-12" *ngIf="moviesTheatres.length > 0">
-                <h3>{{moviesTheatres[0].type}}</h3>
+            <div class="col-12" *ngFor="let typeMovies of moviesArray">
+                <h3>{{typeMovies[0].type}}</h3>
                 <div class="row">
-                    <app-moviecard class="col-sm-2" [cardMovie]="movie" *ngFor="let movie of moviesTheatres | slice:0:12"></app-moviecard>
+                    <app-moviecard class="col-sm-2" [cardMovie]="movie" *ngFor="let movie of typeMovies | slice:0:12"></app-moviecard>
                 </div>
-            </div>
-            <br>
-            <hr>
-
-            <div class="col-12" *ngIf="moviesPopulary.length > 0">
-                <h3>{{moviesPopulary[0].type}}</h3>
-                <div class="row">
-                    <app-moviecard class="col-sm-2" [cardMovie]="movie" *ngFor="let movie of moviesPopulary | slice:0:12"></app-moviecard>
-                </div>
-            </div>
-            <br>
-            <hr>
-
-            <div class="col-12" *ngIf="moviesPopularyKids.length > 0">
-                <h3>{{moviesPopularyKids[0].type}}</h3>
-                <div class="row">
-                    <app-moviecard class="col-sm-2" [cardMovie]="movie" *ngFor="let movie of moviesPopularyKids | slice:0:12"></app-moviecard>
-                </div>
+                <br>
+                <hr>
             </div>
         </div>
 
@@ -33,24 +17,26 @@
                     <div class="col-md-12">
                         <h3>{{seeMoreMovies[0].type}}</h3>
                     </div>
-                    <app-moviecard class="col-sm-3" [cardMovie]="movie" [date]="movie.release_date" *ngFor="let movie of seeMoreMovies"></app-moviecard>
-                    <!-- <div class="col-sm-3" *ngFor="let movie of seeMoreMovies">
-                <div class="card effectGrow" style="border: none;" (click)="goDetail(movie)" [appMessage]="movie.title">
-                    <img [src]="movie | noImage" class="card-img-top">
-                    <small class="smallCard">Año: {{movie.release_date | date:'yyyy'}} 
-                        <ngb-rating class="score" [max]="5" [rate]="(movie.vote_average/2)" [readonly]="true"></ngb-rating>
-                    </small>
-                </div>
-                <br>
-            </div> -->
+                    <app-moviecard class="col-sm-3" [cardMovie]="movie" [date]="movie.release_date" *ngFor="let movie of seeMoreMovies" [appMessage]="movie.title"></app-moviecard>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-1">
-        <div style="position: fixed;">
-            <button *ngIf="seeMoreMovies.length === 0" type="button" class="btn btn-outline-success" (click)="seeMore(moviesPopularyKids)">Ver más</button>
-            <button *ngIf="seeMoreMovies.length > 0" type="button" class="btn btn-outline-danger" (click)="return()">Volver</button>
+    <div class="col">
+        <div class="col-md-1">
+            <div class="btnFlotantes">
+                <div class="row">
+                    <div class="col-md-12" *ngIf="seeMoreBtns">
+                        <div *ngFor="let typeMovies of moviesArray">
+                            <button type="button" class="btn btn-outline-primary" (click)="seeMore(typeMovies) ; seeMoreBtns = !seeMoreBtns">{{typeMovies[0].type}}</button>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button *ngIf="seeMoreMovies.length === 0" type="button" class="btn btn-outline-success" (click)="seeMoreBtns = !seeMoreBtns">Ver más</button>
+                        <button *ngIf="seeMoreMovies.length > 0" type="button" class="btn btn-outline-danger" (click)="return()">Volver</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

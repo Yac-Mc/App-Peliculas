@@ -12,10 +12,9 @@ import { Movie } from '../../interfaces/movie.interface';
 })
 export class HomeComponent implements OnInit {
 
-  moviesTheatres: Movie[] = [];
-  moviesPopulary: Movie[] = [];
-  moviesPopularyKids: Movie[] = [];
+  moviesArray = [];
   seeMoreMovies: Movie[] = [];
+  seeMoreBtns = false;
 
   constructor(private movieService: MoviesService, private datePipe: DatePipe) {
   }
@@ -23,9 +22,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     const dates = this.extractDates();
-    this.movieService.getInTheatres(dates).subscribe((movies: Movie[]) => this.moviesTheatres = movies);
-    this.movieService.getPopulary().subscribe((movies: Movie[]) => this.moviesPopulary = movies);
-    this.movieService.getPopularyKids().subscribe((movies: Movie[]) => this.moviesPopularyKids = movies);
+    this.movieService.getInTheatres(dates).subscribe((movies: Movie[]) => this.moviesArray.push(movies));
+    this.movieService.getPopulary().subscribe((movies: Movie[]) => this.moviesArray.push(movies));
+    this.movieService.getPopularyKids().subscribe((movies: Movie[]) => this.moviesArray.push(movies));
   }
 
   extractDates(): {} {

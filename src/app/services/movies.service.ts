@@ -28,7 +28,7 @@ export class MoviesService {
   }
 
   getPopulary(){
-    return this.getQuery('discover/movie?sort_by=popularity.desc', 'Películas Populares');
+    return this.getQuery('discover/movie?sort_by=popularity.desc', 'Películas populares');
   }
 
   getPopularyKids(){
