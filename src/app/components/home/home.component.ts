@@ -15,16 +15,20 @@ export class HomeComponent implements OnInit {
   moviesArray = [];
   seeMoreMovies: Movie[] = [];
   seeMoreBtns = false;
+  loading: boolean;
 
   constructor(private movieService: MoviesService, private datePipe: DatePipe) {
   }
 
   ngOnInit(): void {
-
+    this.loading = true;
     const dates = this.extractDates();
-    this.movieService.getInTheatres(dates).subscribe((movies: Movie[]) => this.moviesArray.push(movies));
-    this.movieService.getPopulary().subscribe((movies: Movie[]) => this.moviesArray.push(movies));
-    this.movieService.getPopularyKids().subscribe((movies: Movie[]) => this.moviesArray.push(movies));
+    this.movieService.getInTheatres(dates).subscribe((inTheatres: Movie[]) => this.moviesArray.push(inTheatres));
+    this.movieService.getPopulary().subscribe((populary: Movie[]) => this.moviesArray.push(populary));
+    this.movieService.getPopularyKids().subscribe((popularyKids: Movie[]) => {
+      this.moviesArray.push(popularyKids);
+      this.loading = false;
+    });
   }
 
   extractDates(): {} {
@@ -44,8 +48,29 @@ export class HomeComponent implements OnInit {
     return dates;
   }
 
-  seeMore(movies: Movie[]){
+  seeMore(movies: Movie[], type: string){
+    const quantityPages = 3;
     this.seeMoreMovies = movies;
+
+    if (type.includes('cartelera')){
+      const dates = this.extractDates();
+      for (let i = 2; i <= quantityPages; i++){
+        // tslint:disable-next-line: max-line-length
+        this.movieService.getInTheatres(dates, i).subscribe((inTheatres: Movie[]) => this.seeMoreMovies = this.seeMoreMovies.concat(inTheatres)
+        );
+      }
+    }
+    else if ('niños'){
+      for (let i = 2; i <= quantityPages; i++){
+        // tslint:disable-next-line: max-line-length
+        this.movieService.getPopularyKids().subscribe((popularyKids: Movie[]) => this.seeMoreMovies = this.seeMoreMovies.concat(popularyKids));
+      }
+    }
+    else if ('populares'){
+      for (let i = 2; i <= quantityPages; i++){
+        this.movieService.getPopulary().subscribe((populary: Movie[]) => this.seeMoreMovies = this.seeMoreMovies.concat(populary));
+      }
+    }
   }
 
   goDetail(movie: Movie){

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="!loading">
     <div class="col-md-11">
         <div class="container" *ngIf="seeMoreMovies.length === 0">
             <div class="col-12" *ngFor="let typeMovies of moviesArray">
@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-md-12" *ngIf="seeMoreBtns">
                         <div *ngFor="let typeMovies of moviesArray">
-                            <button type="button" class="btn btn-outline-primary" (click)="seeMore(typeMovies) ; seeMoreBtns = !seeMoreBtns">{{typeMovies[0].type}}</button>
+                            <button type="button" class="btn btn-outline-primary" (click)="seeMore(typeMovies, typeMovies[0].type) ; seeMoreBtns = !seeMoreBtns">{{typeMovies[0].type}}</button>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -40,3 +40,5 @@
         </div>
     </div>
 </div>
+
+<app-loading class="m-5" *ngIf="loading"></app-loading>

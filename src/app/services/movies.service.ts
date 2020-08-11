@@ -23,16 +23,16 @@ export class MoviesService {
                     );
   }
 
-  getInTheatres(dates: any = {} ){
-    return this.getQuery(`discover/movie?primary_release_date.gte=${dates.dateIni}&primary_release_date.lte=${dates.dateFin}`, 'Películas en cartelera');
+  getInTheatres(dates: any = {}, page: number = 1 ){
+    return this.getQuery(`discover/movie?primary_release_date.gte=${dates.dateIni}&primary_release_date.lte=${dates.dateFin}&page=${page}`, 'Películas en cartelera');
   }
 
-  getPopulary(){
-    return this.getQuery('discover/movie?sort_by=popularity.desc', 'Películas populares');
+  getPopulary(page: number = 1){
+    return this.getQuery(`discover/movie?sort_by=popularity.desc&page=${page}`, 'Películas populares');
   }
 
-  getPopularyKids(){
-    return this.getQuery('discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc', 'Películas para niños');
+  getPopularyKids(page: number = 1){
+    return this.getQuery(`discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&page=${page}`, 'Películas para niños');
   }
 
   private mapFields(typeMovie: string, response: any){

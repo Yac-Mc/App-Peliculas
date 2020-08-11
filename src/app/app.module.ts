@@ -19,6 +19,7 @@ import { NoImagePipe } from './pipes/no-image.pipe';
 
 // Directivas
 import { MessageDirective } from './directives/message.directive';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { MessageDirective } from './directives/message.directive';
     DetailComponent,
     NoImagePipe,
     MessageDirective,
-    MoviecardComponent
+    MoviecardComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
