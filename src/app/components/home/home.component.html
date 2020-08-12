@@ -17,14 +17,14 @@
                     <div class="col-md-12">
                         <h3>{{seeMoreMovies[0].type}}</h3>
                     </div>
-                    <app-moviecard class="col-sm-3" [cardMovie]="movie" [date]="movie.release_date" *ngFor="let movie of seeMoreMovies" [appMessage]="movie.title"></app-moviecard>
+                    <app-moviecard class="col-sm-3" [cardMovie]="movie" [date]="movie.release_date" *ngFor="let movie of seeMoreMovies"></app-moviecard>
                 </div>
             </div>
         </div>
     </div>
     <div class="col">
         <div class="col-md-1">
-            <div class="btnFlotantes">
+            <div class="btnFloating">
                 <div class="row">
                     <div class="col-md-12" *ngIf="seeMoreBtns">
                         <div *ngFor="let typeMovies of moviesArray">

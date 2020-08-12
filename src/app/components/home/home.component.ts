@@ -63,20 +63,14 @@ export class HomeComponent implements OnInit {
     else if ('niños'){
       for (let i = 2; i <= quantityPages; i++){
         // tslint:disable-next-line: max-line-length
-        this.movieService.getPopularyKids().subscribe((popularyKids: Movie[]) => this.seeMoreMovies = this.seeMoreMovies.concat(popularyKids));
+        this.movieService.getPopularyKids(i).subscribe((popularyKids: Movie[]) => this.seeMoreMovies = this.seeMoreMovies.concat(popularyKids));
       }
     }
     else if ('populares'){
       for (let i = 2; i <= quantityPages; i++){
-        this.movieService.getPopulary().subscribe((populary: Movie[]) => this.seeMoreMovies = this.seeMoreMovies.concat(populary));
+        this.movieService.getPopulary(i).subscribe((populary: Movie[]) => this.seeMoreMovies = this.seeMoreMovies.concat(populary));
       }
     }
-  }
-
-  goDetail(movie: Movie){
-
-    console.log(movie);
-
   }
 
   return(){

@@ -1,7 +1,9 @@
-<div class="card effectGrow" (click)="goDetail(cardMovie)">
+<div *ngIf="!loading" class="card effectGrow" (click)="goDetail(cardMovie)" [appMessage]="cardMovie.title">
     <img class="card-img-top" [src]="cardMovie | noImage">
     <small class="smallScore">
         <label *ngIf="date" for="">Año: {{date | date:'yyyy'}}&nbsp; &nbsp; &nbsp;</label>
         <ngb-rating class="score" [max]="5" [rate]="(cardMovie.vote_average/2)" [readonly]="true"></ngb-rating>
     </small>
 </div>
+
+<app-loading class="m-5" *ngIf="loading"></app-loading>

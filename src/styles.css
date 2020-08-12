@@ -29,8 +29,26 @@
     color: goldenrod;
 }
 
-.btnFlotantes {
+.btnFloating {
     display: scroll;
     position: fixed;
     bottom: 50px;
+}
+
+.divBorder {
+    border: thick solid #343a40;
+    border-radius: 15px;
+}
+
+.imgBackground {
+    text-align: center;
+    width: 540px;
+    height: 600px;
+}
+
+.divTab {
+    border: thick solid #343a40;
+    background-color: #343a40;
+    text-align: center;
+    color: red;
 }
