@@ -12,20 +12,23 @@ export class NoImagePipe implements PipeTransform {
       return pathNoImage;
     }
 
-    const urlImage = detail ? 'http://image.tmdb.org/t/p/w400' : 'http://image.tmdb.org/t/p/w200';
+    let urlImage = '';
     let pathImage = '';
 
     if (detail){
       if (leading){
-        pathImage = movie.poster_path.length > 0 ? urlImage + movie.poster_path : pathNoImage;
+        urlImage = 'http://image.tmdb.org/t/p/w300';
+        pathImage = movie.poster_path && movie.poster_path.length > 0 ? urlImage + movie.poster_path : pathNoImage;
       } else{
+        urlImage = 'http://image.tmdb.org/t/p/w500';
         pathImage = movie.backdrop_path && movie.backdrop_path.length > 0 ? urlImage + movie.backdrop_path : pathNoImage;
       }
     }
     else{
-      if (movie.poster_path.length > 0){
+      urlImage = 'http://image.tmdb.org/t/p/w200';
+      if (movie.poster_path && movie.poster_path.length > 0){
         pathImage = urlImage + movie.poster_path;
-      }else if (movie.backdrop_path.length > 0){
+      }else if (movie.backdrop_path && movie.backdrop_path.length > 0){
         pathImage = urlImage + movie.backdrop_path;
       }else {
         pathImage = pathNoImage;

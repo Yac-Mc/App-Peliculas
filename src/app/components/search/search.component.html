@@ -1,6 +1,19 @@
 <form class="form-inblock my-2 my-lg-0">
     <div class="row">
-        <input #termino class="col-8 form-control mr-sm-2" type="search" placeholder="Buscar película" aria-label="Search" (keyup)="searchMovie(termino.value)">
-        <button class="col-3 btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        <input class="form-control mr-sm-2" type="search" placeholder="Buscar película" aria-label="Search" name="termino" [(ngModel)]="termino" (keyup)="searchMovie()">
     </div>
 </form>
+
+<br>
+
+<div *ngIf="!loading" class="col-md-11">
+    <div class="container" *ngIf="searchMovies.length > 0">
+        <div class="col-12">
+            <div class="row">
+                <app-moviecard class="col-sm-3" [origin]="'search'" [cardMovie]="movie" [date]="movie.release_date" *ngFor="let movie of searchMovies"></app-moviecard>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-loading class="m-5" *ngIf="loading"></app-loading>

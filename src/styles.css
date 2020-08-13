@@ -38,17 +38,10 @@
 .divBorder {
     border: thick solid #343a40;
     border-radius: 15px;
+    background-color: #343a40;
 }
 
 .imgBackground {
     text-align: center;
-    width: 540px;
-    height: 600px;
-}
-
-.divTab {
-    border: thick solid #343a40;
-    background-color: #343a40;
-    text-align: center;
-    color: red;
+    height: 500px;
 }

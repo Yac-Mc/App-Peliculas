@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { MoviesService } from '../../services/movies.service';
 import { DatePipe } from '@angular/common';
 import { Movie } from '../../interfaces/movie.interface';

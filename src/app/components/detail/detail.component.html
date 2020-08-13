@@ -1,47 +1,63 @@
 <div *ngIf="!loading" class="row">
-    <div class="col-6">
-        <ngb-carousel>
-            <ng-template ngbSlide class="img-fluid">
-                <div class="picsum-img-wrapper divBorder" style="background-color: #343a40;">
-                    <div class="imgBackground" [ngStyle]="{'background': 'url(' + urlImageLeading + ') no-repeat center center'}"></div>
-                </div>
-            </ng-template>
-            <ng-template ngbSlide class="img-fluid">
-                <div class="picsum-img-wrapper divBorder" style="background-color: #343a40;">
-                    <div class="imgBackground" [ngStyle]="{'background': 'url(' + urlImageBack + ') no-repeat center center'}"></div>
-                </div>
-                <div class="carousel-caption">
-                    <small class="smallScore">
+    <div class="col-11">
+        <div class="col-12">
+            <ngb-carousel>
+                <ng-template ngbSlide class="img-fluid">
+                    <div class="picsum-img-wrapper divBorder">
+                        <div class="imgBackground" [ngStyle]="{'background': 'url(' + urlImageLeading + ') no-repeat center center'}"></div>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide class="img-fluid">
+                    <div class="picsum-img-wrapper divBorder">
+                        <app-loading class="m-5" *ngIf="loading"></app-loading>
+                        <div *ngIf="!loading" class="imgBackground" [ngStyle]="{'background': 'url(' + urlImageBack + ') no-repeat center center'}"></div>
+                    </div>
+                    <div class="carousel-caption">
+                        <small class="smallScore">
                         <label for="">Titulo: {{movieDetail.title}} | Año: {{movieDetail.release_date | date:'yyyy'}} | &nbsp;</label>
                         <ngb-rating class="score" [max]="5" [rate]="(movieDetail.vote_average/2)" [readonly]="true"></ngb-rating>
                     </small>
-                </div>
-            </ng-template>
-        </ngb-carousel>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+        <div class="col-12">
+            <br>
+            <ngb-tabset type="pills">
+                <ngb-tab title="Sinopsis">
+                    <ng-template ngbTabContent>
+                        <div class="col-12">
+                            <p>{{movieDetail.overview}}</p>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Caracteristicas">
+                    <ng-template ngbTabContent>
+                        <div class="col-12">
+                            <small>Para ver más información y trailers de la película, <a [href]="moreInfo + movieDetail.imdb_id" target="_blank">Click Aqui</a></small>
+                            <br>
+                            <small *ngIf="movieDetail.homepage.length > 0">Ir a la página de la película ({{movieDetail.homepage}}) <a [href]="movieDetail.homepage" target="_blank">Click Aqui</a></small>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </div>
     </div>
-    <div class="col-6">
-        <div class="col-12 divTab divBorder">{{movieDetail.title}}</div>
-        <br>
-        <ngb-tabset type="pills">
-            <ngb-tab title="Sinopsis">
-                <ng-template ngbTabContent>
-                    <div class="col-12">
-                        <p>{{movieDetail.overview}}</p>
+    <div class="col-1">
+        <div class="col-md-1">
+            <div class="btnFloating">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-outline-danger" (click)="return()">Volver</button>
                     </div>
-                </ng-template>
-            </ngb-tab>
-            <ngb-tab title="Caracteristicas">
-                <ng-template ngbTabContent>
-                    <div class="col-12">
-                        <p>Pagina Web: <a [href]="movieDetail.homepage"> Netflix</a></p>
-                    </div>
-                    <div class="col-12">
-                        <iframe src="https://www.youtube.com/embed/iHhcHTlGtRs" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                </ng-template>
-            </ngb-tab>
-        </ngb-tabset>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <app-loading class="m-5" *ngIf="loading"></app-loading>
+
+<div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+    Error al extraer la información de la película
+</div>

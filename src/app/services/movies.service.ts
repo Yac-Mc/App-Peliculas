@@ -44,8 +44,12 @@ export class MoviesService {
     return this.getQuery(`discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&page=${page}&`, 'Películas para niños');
   }
 
-  getDetailMovieId(id: number){
+  getDetailMovieById(id: number){
     return this.getQuery(`movie/${id}?`, 'detalle');
+  }
+
+  searchMovie(texto: string, page: number = 1){
+    return this.getQuery(`search/movie?query=${texto}&page=${page}&`, 'busqueda');
   }
 
   private mapFields(typeMovie: string, response: any, detail: boolean){
@@ -60,7 +64,8 @@ export class MoviesService {
         backdrop_path: response.backdrop_path,
         overview: response.overview,
         video: response.video,
-        homepage: response.homepage
+        homepage: response.homepage,
+        imdb_id: response.imdb_id
       };
       return movieDetail;
     }

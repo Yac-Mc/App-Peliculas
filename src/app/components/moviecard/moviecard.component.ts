@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, Input } from '@angular/core';
 import { Movie } from 'src/app/interfaces/movie.interface';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { __importDefault } from 'tslib';
 
 @Component({
   selector: 'app-moviecard',
@@ -13,9 +14,9 @@ export class MoviecardComponent implements AfterViewInit {
   loading = true;
   @Input() cardMovie: Movie;
   @Input() date?: Date;
+  @Input() origin: string;
 
-  constructor( private router: Router ) {
-  }
+  constructor( private router: Router ) { }
 
   ngAfterViewInit(){
     setTimeout(() => {
@@ -24,8 +25,7 @@ export class MoviecardComponent implements AfterViewInit {
   }
 
   goDetail(movie: Movie){
-    this.router.navigate(['/detail', movie.id]);
-    console.log(movie);
+    this.router.navigate(['/detail', movie.id, this.origin]);
   }
 
 }

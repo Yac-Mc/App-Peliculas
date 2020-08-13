@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  searchNav(form: NgForm){
+
+    if (form.invalid || form.value[`search`].trim().length === 0){
+      return null;
+    }
+
+    this.router.navigate(['/search', form.value[`search`].trim()]);
+
+    form.reset();
   }
 
 }

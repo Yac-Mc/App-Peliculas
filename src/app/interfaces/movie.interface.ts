@@ -19,4 +19,5 @@ export interface MovieDetail {
     overview?: string;
     video: boolean;
     homepage?: string;
+    imdb_id: number;
 }

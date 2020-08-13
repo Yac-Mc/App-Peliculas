@@ -4,7 +4,7 @@
             <div class="col-12" *ngFor="let typeMovies of moviesArray">
                 <h3>{{typeMovies[0].type}}</h3>
                 <div class="row">
-                    <app-moviecard class="col-sm-2" [cardMovie]="movie" *ngFor="let movie of typeMovies | slice:0:12"></app-moviecard>
+                    <app-moviecard class="col-sm-2" [origin]="'home'" [cardMovie]="movie" *ngFor="let movie of typeMovies | slice:0:12"></app-moviecard>
                 </div>
                 <br>
                 <hr>
@@ -17,12 +17,12 @@
                     <div class="col-md-12">
                         <h3>{{seeMoreMovies[0].type}}</h3>
                     </div>
-                    <app-moviecard class="col-sm-3" [cardMovie]="movie" [date]="movie.release_date" *ngFor="let movie of seeMoreMovies"></app-moviecard>
+                    <app-moviecard class="col-sm-3" [origin]="'home'" [cardMovie]="movie" [date]="movie.release_date" *ngFor="let movie of seeMoreMovies"></app-moviecard>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col">
+    <div class="col-1">
         <div class="col-md-1">
             <div class="btnFloating">
                 <div class="row">
